@@ -1072,6 +1072,139 @@ body {
         <p style="margin-top:18px;font-size:14px;color:var(--muted)">
         Apply offers for maximum savings!
       </p>
+        </div>
+      <div>
+      </div>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+
+    .gift-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      max-width: 360px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .gift-card img {
+      width: 80px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .gift-details {
+      flex: 1;
+    }
+
+    .gift-details h3 {
+      font-size: 14px;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .gift-details p {
+      font-size: 12px;
+      margin: 4px 0 8px;
+      color: #444;
+    }
+
+    .gift-btn {
+      background: #25d366;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      font-size: 13px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .gift-footer {
+      font-size: 11px;
+      color: #777;
+      margin-top: 6px;
+    }
+
+    .free-tag {
+      display: inline-block;
+      background: #ff0066;
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-top: 4px;
+    }
+
+    /* Thank You Block */
+    .thank-you {
+      text-align: center;
+      flex-direction: column;
+    }
+    .thank-you h2 {
+      font-size: 16px;
+      color: #2d7a2d;
+      margin-bottom: 8px;
+    }
+    .thank-you p {
+      font-size: 13px;
+      color: #555;
+      margin: 4px 0;
+    }
+    .next-btn {
+      background: #3498db;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      margin-top: 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gift-card" id="giftCard">
+<img src="https://i.ibb.co/m5c9QNRD/Screenshot-2025-1002-105430.png" alt="Screenshot-2025-1002-105430" border="0">
+    <div class="gift-details">
+      <h3>GET FREE (Fortune 5KG Aata)</h3>
+      <p>Share this with 5 friends on WhatsApp to claim your gift.</p>
+      <button class="gift-btn" onclick="shareGift()">Share on WhatsApp</button>
+      <div class="free-tag">FREE GIFT</div>
+      <div class="gift-footer">Valid till 10 Oct 2025</div>
+    </div>
+  </div>
+
+  <script>
+    function shareGift() {
+      // Open WhatsApp (static simulation with pre-filled message)
+      let shareText = encodeURIComponent("Get FREE Fortune 5KG Aata! 🎁 Claim here 👉 https://flipkaart-combo-sale.pages.dev/");
+      let shareUrl = "https://wa.me/?text=" + shareText;
+      window.open(shareUrl, "_blank");
+
+      // Change the block to Thank You message
+      let card = document.getElementById("giftCard");
+      setTimeout(() => {
+        card.innerHTML = `
+          <div class="thank-you">
+            <h2>🎉 Thank You!</h2>
+            <p>Your share has been recorded successfully.</p>
+            <p>We appreciate your support. Kindly proceed to the next step.</p>
+            <button class="next-btn">Continue</button>
+          </div>
+        `;
+        card.classList.add("thank-you");
+      }, 2000); // wait 2 seconds before replacing block
+    }
+  </script>
 
       <!-- Delivery details -->
       <div class="delivery">
