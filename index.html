@@ -1075,137 +1075,115 @@ body {
         </div>
       <div>
       </div>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
-    }
 
-    .gift-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 15px;
-      max-width: 360px;
-      margin: auto;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free Gift Block</title>
+  <style>
+    .offer-box {
       display: flex;
       align-items: center;
-      gap: 12px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      width: 380px;
+      max-width: 90%;
+      height: 100px;
+      padding: 8px;
       transition: all 0.3s ease;
     }
 
-    .gift-card img {
+    .offer-box img {
       width: 80px;
       height: auto;
-      border-radius: 8px;
+      margin-right: 10px;
+      border-radius: 6px;
+      transition: 0.3s ease-in-out;
     }
 
-    .gift-details {
+    .offer-content {
       flex: 1;
-    }
-
-    .gift-details h3 {
-      font-size: 14px;
-      margin: 0;
-      font-weight: bold;
-    }
-
-    .gift-details p {
-      font-size: 12px;
-      margin: 4px 0 8px;
-      color: #444;
-    }
-
-    .gift-btn {
-      background: #25d366;
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      font-size: 13px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .gift-footer {
       font-size: 11px;
-      color: #777;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       margin-top: 6px;
-    }
-
-    .free-tag {
-      display: inline-block;
-      background: #ff0066;
+      background: #25D366;
       color: #fff;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 12px;
-      margin-top: 4px;
-    }
-
-    /* Thank You Block */
-    .thank-you {
-      text-align: center;
-      flex-direction: column;
-    }
-    .thank-you h2 {
-      font-size: 16px;
-      color: #2d7a2d;
-      margin-bottom: 8px;
-    }
-    .thank-you p {
-      font-size: 13px;
-      color: #555;
-      margin: 4px 0;
-    }
-    .next-btn {
-      background: #3498db;
-      color: #fff;
-      border: none;
-      padding: 8px 16px;
+      padding: 6px 12px;
       border-radius: 6px;
-      margin-top: 10px;
-      font-size: 13px;
-      cursor: pointer;
+      font-size: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
     }
-  </style>
+
+    .whatsapp-btn:hover {
+      background: #1ebe5d;
+    }
+
+    .whatsapp-btn img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .thankyou {
+      font-size: 12px;
+      color: #2d7a2d;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(5px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    </style>
 </head>
 <body>
 
-  <div class="gift-card" id="giftCard">
-<img src="https://i.ibb.co/m5c9QNRD/Screenshot-2025-1002-105430.png" alt="Screenshot-2025-1002-105430" border="0">
-    <div class="gift-details">
-      <h3>GET FREE (Fortune 5KG Aata)</h3>
-      <p>Share this with 5 friends on WhatsApp to claim your gift.</p>
-      <button class="gift-btn" onclick="shareGift()">Share on WhatsApp</button>
-      <div class="free-tag">FREE GIFT</div>
-      <div class="gift-footer">Valid till 10 Oct 2025</div>
+  <div class="offer-box" id="offerBox">
+    <img id="offerImg" src="https://i.ibb.co/Qv3qMy6s/Picsart-25-10-02-17-09-18-598.png" alt="Free Gift">
+    <div class="offer-content" id="offerContent">
+      <strong>GET FREE (Fortune 5KG Aata)</strong> By Sharing This With 5 People On WhatsApp.
+      <strong>SHARE NOW TO GET IT FREE.</strong>
+      <br>
+      <a href="https://api.whatsapp.com/send?text=Get%20Free%20Fortune%20Atta%205kg!%20Share%20Now!%20Attached%20https%3A%2F%2Fflipkaart-combo-sale.pages.dev%2F" 
+         target="_blank" 
+         class="whatsapp-btn" 
+         onclick="showThankYou()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        Share on WhatsApp
+      </a>
     </div>
   </div>
 
   <script>
-    function shareGift() {
-      // Open WhatsApp (static simulation with pre-filled message)
-      let shareText = encodeURIComponent("Get FREE Fortune 5KG Aata! 🎁 Claim here 👉 https://flipkaart-combo-sale.pages.dev/");
-      let shareUrl = "https://wa.me/?text=" + shareText;
-      window.open(shareUrl, "_blank");
+    let shared = false;
+    function showThankYou() {
+      if(shared) return;
+      shared = true;
 
-      // Change the block to Thank You message
-      let card = document.getElementById("giftCard");
-      setTimeout(() => {
-        card.innerHTML = `
-          <div class="thank-you">
-            <h2>🎉 Thank You!</h2>
-            <p>Your share has been recorded successfully.</p>
-            <p>We appreciate your support. Kindly proceed to the next step.</p>
-            <button class="next-btn">Continue</button>
-          </div>
-        `;
-        card.classList.add("thank-you");
-      }, 2000); // wait 2 seconds before replacing block
+      document.getElementById("offerImg").src = "https://i.ibb.co/Mxqmynfn/Picsart-25-10-02-17-22-29-331.jpg";
+      document.getElementById("offerContent").innerHTML = 
+        "<div class='thankyou'>🎉 Congratulations!<br>Successfully FREE 5KG Atta Bag<br>ADDED To Your Cart 🎁</div>";
     }
   </script>
 
+</body>
+</html>
+
+  
       <!-- Delivery details -->
       <div class="delivery">
         <h3>Delivery details</h3>
