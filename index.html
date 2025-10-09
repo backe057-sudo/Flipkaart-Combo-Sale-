@@ -1,10 +1,162 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Flipkart BIG BILLIONS DAY SALE (Fortune Combo)</title>
 <style>
+/* ---- Reset & sensible defaults ---- */
+  :root {
+    --max-content-width: 1200px;
+    --gutter: 16px;
+  }
+
+  /* Global reset */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Remove default body margin and ensure full-bleed */
+  body {
+    margin: 0;                    /* critical for edge-to-edge */
+    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
+             env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+    min-height: 100vh;
+    background: #f4f5f7;
+    color: #111;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;           /* prevents accidental horizontal scroll */
+  }
+
+  /* Full-bleed sections (background spans full width) */
+  .full-bleed {
+    width: 100vw;                 /* use viewport width */
+    margin-left: 50%;
+    transform: translateX(-50%);  /* center across the viewport */
+  }
+
+  /* Alternative approach for full-bleed backgrounds using pseudo-element */
+  .section {
+    position: relative;
+    padding: 40px var(--gutter);
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+  }
+  .section--bg {
+    padding: 48px var(--gutter);
+  }
+  .section--bg::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100vw;                 /* full width background bar */
+    z-index: -1;
+    background: linear-gradient(90deg,#0ea5a4 0%,#06b6d4 100%);
+  }
+
+  /* Centered content container for readable lines */
+  .container {
+    width: 100%;
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* Example header/footer that go edge-to-edge visually */
+  header, footer {
+    width: 100%;
+    padding: 18px var(--gutter);
+  }
+  header { background: #111; color: #fff; position: sticky; top: 0; z-index: 30; }
+  footer { background: #0b1220; color: #fff; }
+
+  /* Full-bleed image that preserves aspect ratio */
+  .hero-img {
+    display: block;
+    width: 100vw;
+    height: auto;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    max-height: 60vh;
+    object-fit: cover;
+  }
+
+  /* Utility: make a box that visually spans edges but content stays constrained */
+  .bleed-band {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 12px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .bleed-band .container { padding-left: var(--gutter); padding-right: var(--gutter); }
+
+  /* Responsive helpers */
+  @media (min-width: 1400px) {
+    :root { --max-content-width: 1320px; }
+  }
+
+
+
+    /* Product block */
+    .product {
+      padding: 24px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .product-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-top .size-label {
+     background:#111;color:#fff;display:inline-block;padding:6px 12px;border-radius:8px;font-size:14px;font-weight:600
+     }
+        
+
+    .assured-tag img {
+      height: 75px;
+      width: 75px;
+    }
+  /* ---------- Media card (stacked line-by-line) ---------- */
+  .media-card{
+    margin-top:12px;
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .hero-wrap{position:relative;padding:12px 12px 6px}
+  .hero{
+    width:100%;
+    height:420px;
+    border-radius:12px;
+    background:#fff center/contain no-repeat;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    transition:opacity .22s ease, transform .22s ease;
+  }
+  .hero img{width:100%;height:100%;object-fit:contain;display:block}
+
+  .thumbs{
+    display:flex;gap:10px;padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  }
+  .thumb{
+    min-width:74px;height:74px;border-radius:10px;background:#fff;box-shadow:0 6px 14px rgba(2,6,23,0.05);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;border:2px solid transparent;flex:0 0 auto;
+  }
+  .thumb img{width:100%;height:100%;object-fit:contain;border-radius:8px}
+  .thumb.active{border-color:var(--accent-green);transform:translateY(-4px)}
   :root{
     --primary:#2874f0; --accent:#ff9f00; --muted:#9aa0a6; --card:#fff; --green:#0b9b39;
     --radius:14px; --shadow:0 6px 18px rgba(20,20,40,.06); --maxw:1100px;
@@ -36,6 +188,9 @@
 .product-details {
   padding: 12px;
 }
+
+  .qty{background:#fff;padding:8px 10px;border-radius:12px;border:1px solid #eef2f7;display:flex;align-items:center;gap:8px}
+  .qty button{background:transparent;border:0;font-weight:900;font-size:18px;cursor:pointer}
 
 .tag {
   display: inline-block;
@@ -301,15 +456,15 @@ h2 {
   }
 
   /* Info */
-  .info h1{font-size:20px;margin:8px 0 14px}
-  .badge{background:#520C62;color:#FFFFFF;padding:6px 10px;border-radius:8px;display:inline-block;font-size:13px;font-weight:600}
+  .info h1{font-size:21px;margin:9px 0 15px}
+  .badge{background:#520C62;color:#FFFFFF;padding:4px 16px;border-radius:4px;display:inline-block;font-size:12px;font-weight:900}
   .price-row{margin-top:12px;display:flex;align-items:center;gap:10px}
-  .big-price{font-size:28px;font-weight:800}
+  .big-price{font-size:28px;font-weight:900}
     .strike{text-decoration:line-through;color:var(--muted);justify-content:left;font-size:16px;}
-  .off{color:var(--green);font-weight:700;font-size:20px}
+  .off{color:var(--green);font-weight:800;font-size:22px}
   .deal{margin-top:16px;background:#0041C2;padding:12px;border-radius:12px;font-weight:700;color:#FFFFFF;display:flex;justify-content:space-between;align-items:center}
   
-    .title{font-size:16px;font-weight:700;color:var(--black);line-height:1.3;margin-top:10px}  
+    .title{font-size:16px;font-weight:800;color:var(--black);line-height:1.3;margin-top:10px}  
   .subtitle{color:var(--muted);font-size:13px;margin-top:4px}  
   .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}  
   /* Tabs (pills) */
@@ -1029,24 +1184,813 @@ body {
   <div class="header-nav-bar">
       <img src="https://i.ibb.co/YFwrjxMw/r9uchf3.png" alt="r9uchf3">
   </div>
+    <!-- Media card -->
+    <section class="media-card" aria-label="Product images and gallery">
+      <div class="hero-wrap">
+        <div class="hero" id="hero" aria-live="polite" aria-atomic="true">     
+        <img src="https://i.ibb.co/yBYQ5zfM/Screenshot-2025-10-01-09-15-18-539-com-whatsapp-edit-min.jpg" alt="Screenshot-2025-10-01-09-15-18-539-com-whatsapp-edit-min" border="0">
+       </div>
+      </div>
 
-<main class="container">
-  <div class="grid">
-    <!-- Gallery -->
-    <section class="card">
-      <div class="main-image">
- <img src="https://i.ibb.co/yBYQ5zfM/Screenshot-2025-10-01-09-15-18-539-com-whatsapp-edit-min.jpg" alt="Screenshot-2025-10-01-09-15-18-539-com-whatsapp-edit-min" border="0">
+      <div class="thumbs" id="thumbs" aria-label="thumbnails">
+        <!-- thumbnails injected by JS -->
+      </div>
     </section>
 
+    <!-- Info area -->
+    <section class="info" aria-labelledby="productTitle">
+      <div class="title-row">
+        <div>
 
 
-    <!-- Info -->
-    <aside class="card info">
-      <div style="background:#111;color:#fff;display:inline-block;padding:6px 12px;border-radius:8px;font-size:14px;font-weight:600">
-        5L+5KG
-      </div>
-      <h1>Fortune, Soyabean Rice Bran Oil 5L Jar + Basmati Rice, 5KG Bag. (Combo)</h1>
+
+
+
+
+<style>
+    .section {
+        margin: 15px 0;
+        padding: 12px 16px;
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-family: 'Roboto', Arial, sans-serif;
+        display: block;
+        width: 100%;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+
+    .label {
+        font-size: 14px;
+        color: #212121;
+        font-weight: 500;
+    }
+
+    #selectedQtyLabel {
+        font-weight: 600;
+        color: #2874f0; /* Flipkart Blue */
+    }
+</style>
+
+    <div class="product">
+      <div class="product-top">
+        <span class="size-label">5L+5KG</span>
+        <div class="assured-tag">
+          <img src="https://i.ibb.co/s9GtbZFQ/recommend-optimized.png" alt="Flipkart Assured Custom">
+        </div>
+        </div>
+
+
+
+
+<style>
+  :root {
+    --ff-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    --pill-bg: #000;       /* solid dark pill */
+    --pill-text: #fff;
+  }
+
+  .section {
+    padding: 8px 0;
+    margin: 0;
+  }
+
+  .label {
+    font-family: var(--ff-sans);
+    font-size: 14px;
+    color: #222;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+
+
+  /* Optional: make it adapt slightly on bigger screens */
+  @media (min-width: 640px) {
+    .label { font-size: 15px; }
+    .label strong#selectedQtyLabel {
+      font-size: 14px;
+      padding: 5px 12px;
+      border-radius: 8px;
+    }
+  }
   
+  .pills{
+  display:flex;
+  gap:10px;
+  margin-bottom:14px;
+  padding:4px;
+}
+  .tab.active{background:#111;color:#fff;border-color:transparent}  
+  .tab-content{margin-top:10px}  
+
+.reviews-section {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.review-rating {
+  background: #388e3c;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+.review-user {
+  font-weight: bold;
+  color: #333;
+}
+
+.review-date {
+  color: #888;
+  font-size: 12px;
+}
+
+/* Review text */
+.review-text {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+  line-height: 1.5;
+}
+.reviews-section h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #222;
+}
+
+/* Each review */
+.review {
+  border-top: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.review:first-child {
+  border-top: none;
+}
+
+/* Header (rating + user + date) */
+.review-header {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.review-rating {
+  background: #388e3c;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+        .rating-stars {
+            color: #ff9f00;
+            margin-right: 8px;
+        }
+        
+        .rating-value {
+            font-weight: 500;
+            margin-right: 5px;
+        }
+        
+        .rating-count {
+            color: #878787;
+            font-size: 14px;
+        }
+        
+        .pricing {
+            margin-bottom: 20px;
+        }
+        
+        .current-price {
+            font-size: 28px;
+            font-weight: 600;
+            color: #212121;
+            margin-right: 10px;
+        }
+        
+        .original-price {
+            font-size: 18px;
+            color: #878787;
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+        
+        .discount {
+            color: #388e3c;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+.review-user {
+  font-weight: bold;
+  color: #333;
+}
+
+.review-date {
+  color: #888;
+  font-size: 12px;
+}
+
+/* Review text */
+.review-text {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+  line-height: 1.5;
+}
+.pill{
+  background:#fff;
+  border-radius:999px;
+  padding:10px 14px;
+  font-weight:600;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  border:0;
+  cursor:pointer;
+  font-size:14px;
+  color:#222;
+}
+.pill.active{
+  background:#111;
+  color:#fff;
+  box-shadow:none;
+}
+
+/* Description box below tabs */
+.desc{
+  background:#fff;
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom:18px;
+  color:#222;
+  font-size:14px;
+  line-height:1.4;
+}
+  /* Delivery details */
+  .delivery{margin-top:20px;padding:14px;border:1px solid rgba(0,0,0,.08);border-radius:12px;background:#fafafa}
+  .delivery h3{font-size:15px;margin-bottom:8px}
+  .delivery p{font-size:14px;color:#333;margin:6px 0}
+  .delivery small{color:var(--muted);font-size:13px}
+
+  /* Bottom sticky bar */
+  .bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.08);padding:12px 16px;display:flex;gap:12px}
+  .btn{flex:1;padding:14px;border-radius:14px;border:1px solid rgba(0,0,0,.06);font-weight:700;cursor:pointer;font-size:15px}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),#f6be2e);color:#111;background-colour:FFB343;border:0}
+  .btn.ghost{background:#fff}
+  
+   .container{
+      max-width:900px;
+      margin:20px auto;
+      background:var(--card);
+      padding:20px;
+      border-radius:var(--radius);
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2{
+      margin:10px 0;
+    }
+    .price{
+      font-size:22px;
+      font-weight:bold;
+      color:#111;
+    }
+    .offers{
+      background:#f9f9f9;
+      padding:10px;
+      border-radius:var(--radius);
+      margin:10px 0;
+    }
+    .offers p{
+      margin:6px 0;
+      font-size:14px;
+    }
+    .delivery{
+      margin:15px 0;
+      font-size:14px;
+    }
+    .ratings{
+      margin:20px 0;
+    }
+    .rating-score{
+      font-size:22px;
+      font-weight:bold;
+      color:var(--green);
+    }
+            .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .rating-stars {
+            color: #ff9f00;
+            margin-right: 8px;
+        }
+        
+        .rating-value {
+            font-weight: 500;
+            margin-right: 5px;
+        }
+        
+        .rating-count {
+            color: #FFFFFF;
+            font-size: 12px;
+        }
+        
+    .progress{
+      height:6px;
+      background:#ddd;
+      border-radius:6px;
+      margin:4px 0 10px;
+      overflow:hidden;
+    }
+    .progress span{
+      display:block;
+      height:100%;
+      background:var(--primary);
+    }
+}
+
+/* Sticky bottom bar */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
+      z-index: 1000;
+    }
+
+    /* Buttons / Links */
+    .btn {
+      flex: 1;
+      padding: 14px 0;
+      margin: 0 6px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full-width Flipkart style info strip */
+.order-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;        /* mobile-friendly size */
+  color: #212121;         /* Flipkart dark grey */
+  background: #f1f3f6;    /* light grey background */
+  padding: 12px 16px;
+  width: 100%;            /* full width */
+  box-sizing: border-box; /* padding inside */
+  border-top: 1px solid #e0e0e0;   /* separator line */
+  border-bottom: 1px solid #e0e0e0;/* separator line */
+}
+
+/* Sticky Bottom Bar */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Common Button Styles */
+.btn {
+  flex: 1;
+  margin: 0 5px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Ghost Button (Add to cart) */
+.btn.ghost {
+  background: #fff;
+  border: 1.5px solid #ccc;
+  color: #333;
+}
+
+.btn.ghost:hover {
+  border-color: #999;
+}
+
+/* Primary Button (Buy now) */
+.btn.primary {
+  background: #ffcc00;
+  color: #000;
+  font-weight: bold;
+}
+
+.btn.primary:hover {
+  background: #f5b800;
+}
+
+/* Icon with soft green circle */
+.icon-wrapper {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.15); /* soft green */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-wrapper img {
+  width: 18px;
+  height: 18px;
+}
+
+.order-info strong {
+  font-weight: 600;
+}
+
+    .btn.ghost {
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .btn.primary {
+      background: #007bff;
+      color: #fff;
+    }
+
+    /* Small screen adjustments */
+    @media (max-width: 480px) {
+      .btn {
+        font-size: 14px;
+        padding: 12px 0;
+      }
+    }
+
+.rating-summary p {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+/* Breakdown bars */
+.rating-breakdown .row {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.rating-breakdown span {
+  width: 30px;
+}
+
+.rating-breakdown .bar {
+  flex: 1;
+  height: 8px;
+  background: #eee;
+  margin: 0 6px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rating-breakdown .fill {
+  height: 100%;
+  background: #f9a825; /* Yellow */
+}
+
+/* Customer reviews */
+.customer-reviews {
+  margin-top: 15px;
+}
+
+.review {
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.review:first-child {
+  border-top: none;
+}
+
+.review-header {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.review-rating {
+  background: #388e3c;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+.review-user {
+  color: #777;
+}
+
+.review-text {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+}
+
+.rating span {
+  color: green;
+  margin-right: 4px;
+}
+
+.expiry {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+/* Product Details Section */
+.product-details {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-family: Arial, sans-serif;
+}
+
+.product-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.product-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-details ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #444;
+}
+
+.product-details ul li:last-child {
+  border-bottom: none;
+}
+
+.product-details .label {
+  font-weight: 500;
+  color: #555;
+}
+
+    footer.icons-bar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #fff;
+      padding: 12px 0;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .icons-bar .icon {
+      text-align: center;
+      flex: 1;
+    }
+
+    .icons-bar img {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 6px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .icons-bar p {
+      font-size: 10px;
+      color: #444;
+      margin: 0;
+    }
+
+.product-details .value {
+  font-weight: 400;
+  color: #222;
+  text-align: right;
+}
+
+.product-details .note {
+  font-size: 12px;
+  color: #777;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* --- Quantity Selector --- */
+.quantity {
+  margin: 20px 0;
+}
+
+.quantity h4 {
+  margin-bottom: 10px;
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+}
+
+.options button {
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.options button.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* --- Action Buttons --- */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actions .cart {
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+.actions .buy {
+  background: #ffca28;
+  color: #000;
+}
+
+/* --- Similar Products Carousel --- */
+.similar {
+  margin-top: 25px;
+}
+
+.similar h3 {
+  margin-bottom: 10px;
+}
+    .rating-summary {
+      flex: 1;
+    }
+    .rating-summary .stars {
+      color: #2e7d32;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+    .rating-summary .total {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .bars {
+      padding: 0 16px 16px;
+      font-size: 14px;
+    }
+    .bar {
+      display: flex;
+      align-items: center;
+      margin: 4px 0;
+    }
+    .bar span {
+      width: 20px;
+      margin-right: 6px;
+    }
+    .bar-line {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: #eee;
+      margin: 0 6px;
+      position: relative;
+    }
+    .bar-line div {
+      height: 100%;
+      border-radius: 3px;
+      background: #2e7d32;
+    }
+    .bar-count {
+      width: 30px;
+      text-align: right;
+      font-size: 12px;
+      color: #555;
+    }
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  min-width: 120px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  scroll-snap-align: start;
+}
+
+.item img {
+  width: 100%;
+  max-width: 100px;
+  margin-bottom: 6px;
+}
+
+.item p {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.item span {
+  font-weight: bold;
+  color: #333;
+  
+</style>
+
+
+      <div>
+      <h1>Fortune, Soyabean Rice Bran Oil 5L Jar + Basmati Rice, 5KG Bag. (Combo)</h1>
+      
           
   
       <div class="badge">Top Discount of the Sale</div>
@@ -1059,7 +2003,387 @@ body {
 
       <div class="rating-row">
         <span class="rating">4.3 ★</span>
-                   <div class="rating-badge">4.4 <span class="star">★</span></div>
+<span class="count">12,544 Ratings & 2,898 Reviews</span>
+        </div>
+        <div class="off">80% OFF</div>
+      </div>
+
+
+      <div class="deal">
+        <span>WOW DEAL</span>
+        <span>₹2000 Discount OFF</span>
+      </div>
+      <div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Free Gift Compact</title>
+  <style>
+
+   .offer-box {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: #fff;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      border-radius: 0;
+      padding: 14px 16px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.04);
+
+
+    .offer-left {
+      flex: 0 0 auto;
+      margin-right: 12px;
+    }
+
+    .offer-left img {
+      display: block;
+      width: 84px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .offer-content {
+      flex: 1 1 auto;
+      color: #444;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .offer-content strong {
+      display: block;
+      color: #222;
+      font-weight: 700;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25d366;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 26px;
+      font-weight: 700;
+      font-size: 14px;
+      margin-top: 10px;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
+    }
+
+    .whatsapp-btn img {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      .offer-box {
+        padding: 10px 12px;
+        min-height: 100px;
+      }
+      .offer-left img {
+        width: 70px;
+      }
+      .whatsapp-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="offer-box" id="offerBox">
+    <div class="offer-left" id="offerImage">
+      <img src="https://i.ibb.co/Qv3qMy6s/Picsart-25-10-02-17-09-18-598.png" alt="Fortune">
+    </div>
+
+    <div class="offer-content" id="offerContent">
+      <strong>GET FREE (Fortune 5KG Atta)</strong>
+      By sharing this with 5 persons in WhatsApp. SHARE NOW TO GET IT.
+      <br>
+      <a class="whatsapp-btn"
+         href="https://api.whatsapp.com/send?text=Get%20Free%20Fortune%205kg%20Atta!%20Share%20Now!%20Attached%20https://flipkaart-combo-sale.pages.dev/"
+         target="_blank"
+         onclick="showThankYou(event)">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA">
+        Share on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <script>
+    let shared = false;
+    function showThankYou(e) {
+      e.preventDefault();
+      if (shared) return;
+      shared = true;
+
+      // open WhatsApp share
+      window.open(e.currentTarget.href, "_blank");
+
+      // Keep structure stable
+      const box = document.getElementById('offerBox');
+      const imgDiv = document.getElementById('offerImage');
+      const contentDiv = document.getElementById('offerContent');
+
+      // thank-you styling
+      box.style.background = 'linear-gradient(180deg,#f0fff6,#ffffff)';
+      box.style.borderTop = '1px solid #d6ead9';
+      box.style.borderBottom = '1px solid #d6ead9';
+      box.style.color = '#1d7c3e';
+
+      imgDiv.innerHTML = `<img src="https://i.ibb.co/Mxqmynfn/Picsart-25-10-02-17-22-29-331.jpg" alt="Congrats" style="width:84px;height:auto;border-radius:8px;">`;
+      contentDiv.innerHTML = `<strong style="color:#1d7c3e;font-size:15px;">🎉 Congratulations!</strong>Your FREE 5KG Fortune Atta has been added to your cart!`;
+    }
+  </script>
+
+</body>
+</html>
+      <!-- Delivery details -->
+      <div class="delivery">
+        <h3>Delivery details</h3>
+        <p><strong></strong> – delivery </p>
+        <p><b>EXPRESS</b> Delivery in 2 days <br><small>Order in 00h 36m 07s</small></p>
+        <p><small>Fulfilled by ECOMTAMSINRetail – 3 years with Flipkart</small></p>
+        <p><small>Rating: 4.2 ★</small></p>
+      </div>
+    </div>  
+    <div class="tab-content card" id="specs" style="display:none">  
+      <div class="grid">  
+        <div class="highlight"><b>Brand</b><br>FORTUNE</div>  
+        <div class="highlight"><b>Quantity</b><br>5 kg</div>  
+        <div class="highlight"><b>Shelf Life</b><br>24 months</div>  
+        <div class="highlight"><b>Grain</b><br>Long</div>  
+      </div>  
+    </div>  
+    <div class="tab-content card" id="desc" style="display:none">  
+      <p> basmati rice is aromatic, long-grain and tasty. Perfect for daily meals.</p>  
+    </div>  
+   <footer class="icons-bar">
+    <div class="icon">
+      <img src="https://i.ibb.co/whHpqzFW/original-1.png" alt="original-1" border="0">
+  <p>100% Original</p>
+    </div>
+    <div class="icon">
+      <img src="https://i.ibb.co/LHVjMV9/shield.png" alt="Secure Payment">
+      <p>Secure Payment</p>
+    </div>
+    <div class="icon">
+      <img src="https://i.ibb.co/jZHv0bTW/return.png" alt="Easy Return">
+      <p>Easy Return</p>
+    </div>
+  </footer>
+    </div>  
+  </main>  
+   
+    <div class="order-info">
+    <div class="icon-wrapper">
+<img src="https://i.ibb.co/vxjP1Syt/arrow-1.png" alt="arrow-1" border="0">
+  </div>
+  
+<span><strong>3,000+ People </strong>Ordered This In The Last 15 Days</span>
+  </div>
+  
+  
+   <div class="product-details">
+  <h3>Product Details</h3>
+  <ul>
+    <li><span class="label">Pack of</span><span class="value">5L+5KG</span></li>
+    <li><span class="label">Brand</span><span class="value">FORTUNE</span></li>
+    <li><span class="label">Model Name</span><span class="value">Soya health refined</span></li>
+    <li><span class="label">Type</span><span class="value">Soyabean Oil</span></li>
+    <li><span class="label">Quantity</span><span class="value">10KG</span></li>
+    <li><span class="label">Used For</span><span class="value">Cooking</span></li>
+    <li><span class="label">Processing Type</span><span class="value">Cold Pressed</span></li>
+    <li><span class="label">Maximum Shelf Life</span><span class="value">276 Days</span></li>
+  </ul>
+  
+   <block>
+     <p>Additional Information</p>
+   </block>
+  <p class="note">
+    •  Fortune Soyabean Health Oil Is a Healthy Heart Oil That Is Naturally Enriched With Multiple Nutrients Like Oryzanol to Provide Health Benefits for Every Member of the Family.<br>
+•  Fortune Everyday Full Grain Basmati Rice to Add a Unique Flavour to Add to Your Everyday Dishes.<br>
+• Flipkart endeavours to ensure accurate product information. Always read labels carefully before use.
+  </p>
+</div>
+
+
+
+
+ <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #222;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    .header h2 {
+      margin: 0 auto;
+      font-size: 18px;
+    }
+
+    .summary-container {
+      display: flex;
+      align-items: flex-start;
+      padding: 16px;
+    }
+    .product-img {
+      flex: 0 0 80px;
+      margin-right: 12px;
+    }
+    .product-img img {
+      width: 80px;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+
+    .rating-summary {
+      flex: 1;
+    }
+    .rating-summary .stars {
+      color: #2e7d32;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+    .rating-summary .total {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .bars {
+      padding: 0 16px 16px;
+      font-size: 14px;
+    }
+    .bar {
+      display: flex;
+      align-items: center;
+      margin: 4px 0;
+    }
+    .bar span {
+      width: 20px;
+      margin-right: 6px;
+    }
+    .bar-line {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: #eee;
+      margin: 0 6px;
+      position: relative;
+    }
+    .bar-line div {
+      height: 100%;
+      border-radius: 3px;
+      background: #2e7d32;
+    }
+    .bar-count {
+      width: 30px;
+      text-align: right;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: space-around;
+      padding: 8px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+    }
+    .filters button {
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .filters button.active {
+      border-color: #2e7d32;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+
+    .review {
+      padding: 16px;
+      border-bottom: 1px solid #eee;
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .stars-small {
+      color: #2e7d32;
+      font-size: 14px;
+      margin-right: 6px;
+    }
+    .rating-text {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    .review .text {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+    .review .user {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .review .meta {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .actions button {
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 20px;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h2>All Reviews</h2>
+  </div>
+
+  <!-- Summary with product image -->
+  <div class="summary-container">
+    <div class="">
+     
+    </div>
+    <div class="rating-summary">
+        <div class="overall-rating">
+  <div class="overall-rating">
+    <div class="rating-badge">4.4 <span class="star">★</span></div>
       <div class="stars">★★★★☆</div>
       <div class="total">12,544 ratings and 647 reviews</div>
     </div>
@@ -1334,4 +2658,3 @@ body {
   </div>
   </header>
   </body>
-  
