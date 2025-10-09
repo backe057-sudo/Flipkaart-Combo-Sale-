@@ -47,18 +47,7 @@
   margin-bottom: 6px;
 }
 
- .assured {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .assured img {
-      height: 75px;
-      width: 75px;
-  }
-  
-h5 {
+h2 {
   font-size: 16px;
   margin: 6px 0;
   line-height: 1.4;
@@ -312,15 +301,15 @@ h5 {
   }
 
   /* Info */
-  .info h1{font-size:21px;margin:9px 0 15px}
-  .badge{background:#520C62;color:#FFFFFF;padding:4px 15px;border-radius:4px;display:inline-block;font-size:12px;font-weight:900}
+  .info h1{font-size:20px;margin:8px 0 14px}
+  .badge{background:#520C62;color:#FFFFFF;padding:6px 10px;border-radius:8px;display:inline-block;font-size:13px;font-weight:600}
   .price-row{margin-top:12px;display:flex;align-items:center;gap:10px}
-  .big-price{font-size:28px;font-weight:900}
+  .big-price{font-size:28px;font-weight:800}
     .strike{text-decoration:line-through;color:var(--muted);justify-content:left;font-size:16px;}
-  .off{color:var(--green);font-weight:800;font-size:22px}
+  .off{color:var(--green);font-weight:700;font-size:20px}
   .deal{margin-top:16px;background:#0041C2;padding:12px;border-radius:12px;font-weight:700;color:#FFFFFF;display:flex;justify-content:space-between;align-items:center}
   
-    .title{font-size:16px;font-weight:800;color:var(--black);line-height:1.3;margin-top:10px}  
+    .title{font-size:16px;font-weight:700;color:var(--black);line-height:1.3;margin-top:10px}  
   .subtitle{color:var(--muted);font-size:13px;margin-top:4px}  
   .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}  
   /* Tabs (pills) */
@@ -494,6 +483,583 @@ h5 {
   .bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(0,0,0,.08);padding:12px 16px;display:flex;gap:12px}
   .btn{flex:1;padding:14px;border-radius:14px;border:1px solid rgba(0,0,0,.06);font-weight:700;cursor:pointer;font-size:15px}
   .btn.primary{background:linear-gradient(90deg,var(--accent),#f6be2e);color:#111;background-colour:FFB343;border:0}
+  .btn.ghost{background:#fff}
+  
+   .container{
+      max-width:900px;
+      margin:20px auto;
+      background:var(--card);
+      padding:20px;
+      border-radius:var(--radius);
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2{
+      margin:10px 0;
+    }
+    .price{
+      font-size:22px;
+      font-weight:bold;
+      color:#111;
+    }
+    .offers{
+      background:#f9f9f9;
+      padding:10px;
+      border-radius:var(--radius);
+      margin:10px 0;
+    }
+    .offers p{
+      margin:6px 0;
+      font-size:14px;
+    }
+    .delivery{
+      margin:15px 0;
+      font-size:14px;
+    }
+    .ratings{
+      margin:20px 0;
+    }
+    .rating-score{
+      font-size:22px;
+      font-weight:bold;
+      color:var(--green);
+    }
+            .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .rating-stars {
+            color: #ff9f00;
+            margin-right: 8px;
+        }
+        
+        .rating-value {
+            font-weight: 500;
+            margin-right: 5px;
+        }
+        
+        .rating-count {
+            color: #FFFFFF;
+            font-size: 12px;
+        }
+        
+    .progress{
+      height:6px;
+      background:#ddd;
+      border-radius:6px;
+      margin:4px 0 10px;
+      overflow:hidden;
+    }
+    .progress span{
+      display:block;
+      height:100%;
+      background:var(--primary);
+    }
+}
+
+/* Sticky bottom bar */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
+      z-index: 1000;
+    }
+
+    /* Buttons / Links */
+    .btn {
+      flex: 1;
+      padding: 14px 0;
+      margin: 0 6px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full-width Flipkart style info strip */
+.order-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;        /* mobile-friendly size */
+  color: #212121;         /* Flipkart dark grey */
+  background: #f1f3f6;    /* light grey background */
+  padding: 12px 16px;
+  width: 100%;            /* full width */
+  box-sizing: border-box; /* padding inside */
+  border-top: 1px solid #e0e0e0;   /* separator line */
+  border-bottom: 1px solid #e0e0e0;/* separator line */
+}
+
+/* Sticky Bottom Bar */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Common Button Styles */
+.btn {
+  flex: 1;
+  margin: 0 5px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Ghost Button (Add to cart) */
+.btn.ghost {
+  background: #fff;
+  border: 1.5px solid #ccc;
+  color: #333;
+}
+
+.btn.ghost:hover {
+  border-color: #999;
+}
+
+/* Primary Button (Buy now) */
+.btn.primary {
+  background: #ffcc00;
+  color: #000;
+  font-weight: bold;
+}
+
+.btn.primary:hover {
+  background: #f5b800;
+}
+
+/* Icon with soft green circle */
+.icon-wrapper {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.15); /* soft green */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-wrapper img {
+  width: 18px;
+  height: 18px;
+}
+
+.order-info strong {
+  font-weight: 600;
+}
+
+    .btn.ghost {
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .btn.primary {
+      background: #007bff;
+      color: #fff;
+    }
+
+    /* Small screen adjustments */
+    @media (max-width: 480px) {
+      .btn {
+        font-size: 14px;
+        padding: 12px 0;
+      }
+    }
+
+.rating-summary p {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+/* Breakdown bars */
+.rating-breakdown .row {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.rating-breakdown span {
+  width: 30px;
+}
+
+.rating-breakdown .bar {
+  flex: 1;
+  height: 8px;
+  background: #eee;
+  margin: 0 6px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rating-breakdown .fill {
+  height: 100%;
+  background: #f9a825; /* Yellow */
+}
+
+/* Customer reviews */
+.customer-reviews {
+  margin-top: 15px;
+}
+
+.review {
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.review:first-child {
+  border-top: none;
+}
+
+.review-header {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.review-rating {
+  background: #388e3c;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+.review-user {
+  color: #777;
+}
+
+.review-text {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+}
+
+.rating span {
+  color: green;
+  margin-right: 4px;
+}
+
+.expiry {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+/* Product Details Section */
+.product-details {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-family: Arial, sans-serif;
+}
+
+.product-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.product-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-details ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #444;
+}
+
+.product-details ul li:last-child {
+  border-bottom: none;
+}
+
+.product-details .label {
+  font-weight: 500;
+  color: #555;
+}
+
+    footer.icons-bar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #fff;
+      padding: 12px 0;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .icons-bar .icon {
+      text-align: center;
+      flex: 1;
+    }
+
+    .icons-bar img {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 6px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .icons-bar p {
+      font-size: 10px;
+      color: #444;
+      margin: 0;
+    }
+
+.product-details .value {
+  font-weight: 400;
+  color: #222;
+  text-align: right;
+}
+
+.product-details .note {
+  font-size: 12px;
+  color: #777;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* --- Quantity Selector --- */
+.quantity {
+  margin: 20px 0;
+}
+
+.quantity h4 {
+  margin-bottom: 10px;
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+}
+
+.options button {
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.options button.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* --- Action Buttons --- */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actions .cart {
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+.actions .buy {
+  background: #ffca28;
+  color: #000;
+}
+
+/* --- Similar Products Carousel --- */
+.similar {
+  margin-top: 25px;
+}
+
+.similar h3 {
+  margin-bottom: 10px;
+}
+    .rating-summary {
+      flex: 1;
+    }
+    .rating-summary .stars {
+      color: #2e7d32;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+    .rating-summary .total {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .bars {
+      padding: 0 16px 16px;
+      font-size: 14px;
+    }
+    .bar {
+      display: flex;
+      align-items: center;
+      margin: 4px 0;
+    }
+    .bar span {
+      width: 20px;
+      margin-right: 6px;
+    }
+    .bar-line {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: #eee;
+      margin: 0 6px;
+      position: relative;
+    }
+    .bar-line div {
+      height: 100%;
+      border-radius: 3px;
+      background: #2e7d32;
+    }
+    .bar-count {
+      width: 30px;
+      text-align: right;
+      font-size: 12px;
+      color: #555;
+    }
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  min-width: 120px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  scroll-snap-align: start;
+}
+
+.item img {
+  width: 100%;
+  max-width: 100px;
+  margin-bottom: 6px;
+}
+
+.item p {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.item span {
+  font-weight: bold;
+  color: #333;
+}
+</style>
+</head>
+<body>
+
+  <!-- Header Nav Bar -->
+  <div class="header-nav-bar">
+      <img src="https://i.ibb.co/YFwrjxMw/r9uchf3.png" alt="r9uchf3">
+  </div>
+
+<main class="container">
+  <div class="grid">
+    <!-- Gallery -->
+    <section class="card">
+      <div class="main-image">
+ <img src="https://i.ibb.co/yBYQ5zfM/Screenshot-2025-10-01-09-15-18-539-com-whatsapp-edit-min.jpg" alt="Screenshot-2025-10-01-09-15-18-539-com-whatsapp-edit-min" border="0">
+    </section>
+
+
+
+    <!-- Info -->
+    <aside class="card info">
+      <div style="background:#111;color:#fff;display:inline-block;padding:6px 12px;border-radius:8px;font-size:14px;font-weight:600">
+        5L+5KG
+      </div>
+      <h1>Fortune, Soyabean Rice Bran Oil 5L Jar + Basmati Rice, 5KG Bag. (Combo)</h1>
+  
+          
+  
+      <div class="badge">Top Discount of the Sale</div>
+
+      <div class="price-row">
+        <div class="big-price">₹499</div>
+
+      <span class="old-price">₹2,499.00</span>
+      </div>
+
+      <div class="rating-row">
+        <span class="rating">4.3 ★</span>
+                <span class="count">12,544 Rati90deg,var(--accent),#f6be2e);color:#111;background-colour:FFB343;border:0}
   .btn.ghost{background:#fff}
   
    .container{
